@@ -202,4 +202,3 @@ chmod +x /usr/local/bin/ssh-menu
 echo -e "${GREEN}==============================================${NC}"
 echo -e "${GREEN}   INSTALL DONE! Run using: ssh-menu          ${NC}"
 echo -e "${GREEN}==============================================${NC}"
-`
