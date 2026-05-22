@@ -8,7 +8,7 @@ CYAN="\e[36m"
 NC="\e[0m"
 
 echo -e "${CYAN}==============================================${NC}"
-echo -e "${GREEN}   SSH-MENU PRO FINAL v6.1 (COLOR-FORCE)      ${NC}"
+echo -e "${GREEN}         SSH-MENU PRO v1.0                    ${NC}"
 echo -e "${CYAN}==============================================${NC}"
 
 # ================= INSTALL DEPENDENCIES =================
@@ -55,8 +55,7 @@ echo -e "${YELLOW}Installing SSH-MENU PRO...${NC}"
 cat << 'EOF' > /usr/local/bin/ssh-menu
 #!/bin/bash
 
-# ===== FORCE COLOR ALWAYS =====
-export FORCE_COLOR=1
+# ===== COLORS =====
 RED="\e[31m"; GREEN="\e[32m"; YELLOW="\e[33m"; BLUE="\e[34m"; MAGENTA="\e[35m"; CYAN="\e[36m"; NC="\e[0m"
 
 USERPASS_FILE="/etc/ssh/ssh-users.txt"
@@ -161,7 +160,7 @@ monitor() {
 
 menu() {
     clear
-    echo -e "${GREEN}=========== SSH-MENU PRO v6.1 COLOR-FORCE ===========${NC}"
+    echo -e "${GREEN}=========== SSH-MENU PRO v1.0 ===========${NC}"
     echo "1) Start SSH"
     echo "2) Stop SSH"
     echo "3) SSH Status"
