@@ -146,8 +146,16 @@ ssh_status() {
     ss -tulpn | grep ssh
 }
 
-ssh_start() { systemctl start ssh; }
-ssh_stop() { systemctl stop ssh; }
+# ========== FIXED CONFIRM ==========
+ssh_start() {
+    systemctl start ssh
+    echo -e "${GREEN}SSH started successfully!${NC}"
+}
+
+ssh_stop() {
+    systemctl stop ssh
+    echo -e "${RED}SSH stopped successfully!${NC}"
+}
 
 monitor() {
     echo -e "${MAGENTA}Live Monitor (CTRL+C to exit)${NC}"
@@ -170,9 +178,12 @@ menu() {
     echo "7) Delete User"
     echo "8) List Users"
     echo "9) Live Monitor"
-    echo "B) Backup"
-    echo "R) Restore"
-    echo "0) Exit"
+
+    # ==== FIXED COLORS ====
+    echo -e "${MAGENTA}B) Backup${NC}"
+    echo -e "${MAGENTA}R) Restore${NC}"
+    echo -e "${YELLOW}0) Exit${NC}"
+
     read -p "Choose: " C
 
     case "$C" in
@@ -196,6 +207,7 @@ ensure_env
 while true; do menu; read -p "Press Enter…" ; done
 EOF
 
+# ==== این سه خط مهم که گفتی ====
 chmod +x /usr/local/bin/ssh-menu
 
 echo -e "${GREEN}==============================================${NC}"
