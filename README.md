@@ -36,7 +36,7 @@ The command downloads and executes the installer as root. Review [install.sh](in
 - An active network connection to download packages.
 - SSH server configuration at /etc/ssh/sshd_config and a systemd service named ssh.
 
-The installer runs apt update, installs ssh, sed, grep, and nano, and places the menu at /usr/local/bin/ssh-menu.
+The installer runs apt update, installs ssh, sed, grep, and nano, and places the menu at /usr/local/bin/ssh-menu. Accounts created by the menu use /usr/sbin/nologin as their shell.
 
 ### Menu options
 
@@ -45,7 +45,7 @@ The installer runs apt update, installs ssh, sed, grep, and nano, and places the
 | 1 | Start the SSH service |
 | 2 | Stop the SSH service |
 | 3 | Show SSH service status and listening sockets |
-| 4 | Add a second SSH port (the script keeps port 22 in its configuration) |
+| 4 | Replace Port directives in sshd_config with port 22 and the selected port |
 | 5 | Show configured and live SSH ports |
 | 6 | Create a Linux account intended for tunnelling |
 | 7 | Delete a Linux account |
@@ -54,6 +54,8 @@ The installer runs apt update, installs ssh, sed, grep, and nano, and places the
 | B | Back up the current sshd_config |
 | R | Restore a selected backup |
 | 0 | Exit |
+
+When option 4 is used, existing Port directives in the main sshd_config are replaced by port 22 and the selected port. This option does not open the host or provider firewall; allow the selected port there separately.
 
 Backups created through the menu are stored in /etc/ssh/backup. The menu enables the ssh service at boot when it starts.
 
@@ -113,7 +115,7 @@ sudo ssh-menu
 - اتصال اینترنت برای دریافت بسته‌ها.
 - فایل تنظیمات SSH در /etc/ssh/sshd_config و سرویس systemd با نام ssh.
 
-نصب‌کننده apt update را اجرا می‌کند، بسته‌های ssh، sed، grep و nano را نصب می‌کند و منو را در /usr/local/bin/ssh-menu قرار می‌دهد.
+نصب‌کننده apt update را اجرا می‌کند، بسته‌های ssh، sed، grep و nano را نصب می‌کند و منو را در /usr/local/bin/ssh-menu قرار می‌دهد. حساب‌هایی که منو می‌سازد از پوستهٔ /usr/sbin/nologin استفاده می‌کنند.
 
 ### گزینه‌های منو
 
@@ -122,7 +124,7 @@ sudo ssh-menu
 | 1 | اجرای سرویس SSH |
 | 2 | متوقف کردن سرویس SSH |
 | 3 | نمایش وضعیت سرویس و سوکت‌های در حال شنود |
-| 4 | افزودن پورت دوم SSH؛ اسکریپت پورت 22 را در تنظیمات خود نگه می‌دارد |
+| 4 | جایگزینی دستورهای Port با پورت 22 و پورت انتخابی |
 | 5 | نمایش پورت‌های تنظیم‌شده و فعال SSH |
 | 6 | ساخت حساب لینوکسی برای تونل |
 | 7 | حذف حساب لینوکسی |
@@ -131,6 +133,8 @@ sudo ssh-menu
 | B | تهیهٔ نسخهٔ پشتیبان از sshd_config |
 | R | بازگردانی یک نسخهٔ پشتیبان انتخاب‌شده |
 | 0 | خروج |
+
+با انتخاب گزینهٔ ۴، دستورهای Port موجود در فایل اصلی sshd_config با پورت ۲۲ و پورت انتخابی جایگزین می‌شوند. این گزینه فایروال سیستم یا ارائه‌دهنده را باز نمی‌کند؛ پورت انتخاب‌شده را جداگانه در فایروال مجاز کنید.
 
 نسخه‌های پشتیبان منو در /etc/ssh/backup ذخیره می‌شوند. هنگام اجرای منو، سرویس ssh برای اجرا در زمان راه‌اندازی سیستم فعال می‌شود.
 
